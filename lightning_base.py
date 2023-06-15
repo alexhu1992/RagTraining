@@ -125,6 +125,9 @@ class BaseTransformer(pl.LightningModule):
         )
         scheduler = {"scheduler": scheduler, "interval": "step", "frequency": 1}
         return scheduler
+    
+    def lr_scheduler_step(self, scheduler, metric, some):
+      scheduler.step(epoch=self.current_epoch)
 
     def configure_optimizers(self):
         """Prepare optimizer and schedule (linear warmup and decay)"""
@@ -156,6 +159,8 @@ class BaseTransformer(pl.LightningModule):
         return [optimizer], [scheduler]
 
     def test_step(self, batch, batch_nb):
+        self.log("val_em", em_score, on_step=False, on_epoch=True, prog_bar=True)
+
         return self.validation_step(batch, batch_nb)
 
     def test_epoch_end(self, outputs):
@@ -367,7 +372,7 @@ def generic_train(
     # add custom checkpoints
     if checkpoint_callback is None:
         checkpoint_callback = pl.callbacks.ModelCheckpoint(
-            filepath=args.output_dir, prefix="checkpoint", monitor="val_loss", mode="min", save_top_k=1
+            filepath=args.output_dir, prefix="checkpoint", monitor="val_em", mode="min", save_top_k=1
         )
     if early_stopping_callback:
         extra_callbacks.append(early_stopping_callback)
@@ -387,12 +392,12 @@ def generic_train(
 
     train_params["accumulate_grad_batches"] = args.accumulate_grad_batches
     train_params["profiler"] = None  # extra_train_kwargs.get("profiler", None) #get unwanted logs
-    # train_params["devices"] = "auto"
+    train_params["devices"] = "auto"
 
     trainer = pl.Trainer.from_argparse_args(
         args,
         weights_summary=None,
-        callbacks=[logging_callback] + extra_callbacks + [checkpoint_callback] + [InitCallback()],
+        callbacks=[logging_callback] + extra_callbacks + [InitCallback()],
         logger=logger,
         **train_params,
     )
