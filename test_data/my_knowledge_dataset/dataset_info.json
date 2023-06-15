@@ -1,0 +1,48 @@
+{
+  "builder_name": "csv",
+  "citation": "",
+  "config_name": "default",
+  "dataset_size": 98666,
+  "description": "",
+  "download_checksums": {
+    "/mnt/c/Users/Alex/workspace/transformers/examples/research_projects/rag/fake_traning_dat.tsv": {
+      "num_bytes": 97464,
+      "checksum": null
+    }
+  },
+  "download_size": 97464,
+  "features": {
+    "text": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "title": {
+      "dtype": "string",
+      "_type": "Value"
+    },
+    "embeddings": {
+      "feature": {
+        "dtype": "float32",
+        "_type": "Value"
+      },
+      "_type": "Sequence"
+    }
+  },
+  "homepage": "",
+  "license": "",
+  "size_in_bytes": 196130,
+  "splits": {
+    "train": {
+      "name": "train",
+      "num_bytes": 98666,
+      "num_examples": 240,
+      "dataset_name": "csv"
+    }
+  },
+  "version": {
+    "version_str": "0.0.0",
+    "major": 0,
+    "minor": 0,
+    "patch": 0
+  }
+}

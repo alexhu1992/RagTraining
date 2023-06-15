@@ -1,0 +1,14 @@
+location-eus-stg-exceptions-failures-logalertv2
+location-ne-prd-exceptions-failures-logalertv2
+location-eus-prd-exceptions-failures-logalertv2
+location-auea-prd-exceptions-failures-logalertv2
+location-jaea-prd-exceptions-failures-logalertv2
+location-soas-prd-exceptions-failures-logalertv2
+location-unknown-prd-exceptions-failures-logalertv2
+location-ne2-prd-exceptions-failures-logalertv2
+location-we-stg-exceptions-failures-logalertv2
+location-eus-stg-exceptions-failures-logalertv2
+location-we-prd-exceptions-failures-logalertv2
+Customer is not able to route to insights with 404 errors
+Customer is not able to route to orchestrator with 404 errors
+Customer is not able to route to document understanding with 404 errors
